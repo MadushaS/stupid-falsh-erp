@@ -1,0 +1,531 @@
+[
+  {
+    "id": "card-001",
+    "type": "basic",
+    "front": "What is one of the **new trends** in Enterprise Application Development (EAD) for 2024?",
+    "back": "One of the new trends is **Machine learning** [1]. Other trends include Big data [1], Blockchain [1], Digital transformation [1], Progressive Web Applications (PWAs) [1], Wearable Devices [1], and Accelerated Mobile Pages (AMPs) [1].",
+    "tags": ["EAD Trends", "2024 Trends"]
+  },
+  {
+    "id": "card-002",
+    "type": "basic",
+    "front": "What is the main reason traditional enterprise software is considered **ineffective** in the context of Machine Learning in EAD?",
+    "back": "Traditional enterprise software is ineffective because it lacks **adaptability** and **efficiency**, which Machine Learning aims to improve [1].",
+    "tags": ["Machine Learning", "Enterprise Software"]
+  },
+  {
+    "id": "card-003",
+    "type": "basic",
+    "front": "List one reason why **machine learning** will alter enterprise software.",
+    "back": "Machine learning will alter enterprise software by **improving behavioral analysis** to deliver personalized customer experience [2], or by utilizing **Natural Language Processing (NLP) capabilities** for better analysis [2]. Other reasons include providing risk analysis for data security [2], mining and classifying data / enabling image recognition [2], and delivering frequent suggestions [2].",
+    "tags": ["Machine Learning", "Enterprise Software"]
+  },
+  {
+    "id": "card-004",
+    "type": "basic",
+    "front": "How does machine learning reform enterprise software by facilitating **data-driven decisions**?",
+    "back": "Machine learning reforms enterprise software by generating **better insights and analysis**, enabling the **delocalization of Data**, and empowering **Employee Intelligence** to facilitate data-driven decisions [2].",
+    "tags": ["Machine Learning", "Data-driven Decisions"]
+  },
+  {
+    "id": "card-005",
+    "type": "basic",
+    "front": "Give an example of **machine learning usage** in Enterprise Applications related to **connected vehicles**.",
+    "back": "In **connected trucks**, machine learning enables automated check-ups of truck health, identifies components to be replaced, places orders automatically, and schedules and assigns tasks to maintenance engineers using cameras, sensors, and data analytics [2, 3].",
+    "tags": ["Machine Learning", "EAD Usage"]
+  },
+  {
+    "id": "card-006",
+    "type": "basic",
+    "front": "What is **Seva** in the context of the SAP ecosystem?",
+    "back": "Seva is an **SAP ecosystem virtual assistant**, a conversational bot for enterprise users to interact and perform transactional activities. It interacts with SAP systems via voice and leverages SAP cloud platform and Google Dialogflow services [3].",
+    "tags": ["Machine Learning", "SAP", "Conversational AI"]
+  },
+  {
+    "id": "card-007",
+    "type": "basic",
+    "front": "Name one usage of **Big Data** in Enterprise Application Development (EAD).",
+    "back": "One usage is to **Easily Visualize Data** [4]. Other usages include In-memory Edge [4], Big Data and CRM [4], and Big Data and Business Intelligence [4].",
+    "tags": ["Big Data", "EAD Trends"]
+  },
+  {
+    "id": "card-008",
+    "type": "basic",
+    "front": "What is a benefit of **Blockchain** in Enterprise Application Development?",
+    "back": "A benefit is **enhanced security** [4]. Other benefits include supply chain management [4], protecting digital identity [4], and smarter predictive analysis [4].",
+    "tags": ["Blockchain", "Security"]
+  },
+  {
+    "id": "card-009",
+    "type": "basic",
+    "front": "How does **digital transformation** redefine enterprise application ecosystems?",
+    "back": "Digital business redefines enterprise application ecosystems by creating more ways for technology providers to orchestrate and participate, following **four archetypes**: The Cloud Platform-led, The Application Suite-led, The Experience-led, and The Industry-led ecosystems [4-6].",
+    "tags": ["Digital Transformation", "Ecosystems"]
+  },
+  {
+    "id": "card-010",
+    "type": "basic",
+    "front": "Name two features of **Progressive Web Applications (PWAs)** relevant for enterprise readiness.",
+    "back": "Two features are **Progressive Development & Responsive Design** [7] and **Network Independence & Freshness** [7]. Other features include Discoverability & Engagement [7], Installability & Native App-like Experience [7], and Enterprise Security & Data Integrity [7].",
+    "tags": ["PWA", "EAD Trends"]
+  },
+  {
+    "id": "card-011",
+    "type": "basic",
+    "front": "What are some **advantages** of **Accelerated Mobile Pages (AMPs)**?",
+    "back": "The advantages of AMPs include **Speed** [8], **Visibility** [8], **Engagement** [8], Tenant time [8], and Competition [8].",
+    "tags": ["AMP", "Mobile Development"]
+  },
+  {
+    "id": "card-012",
+    "type": "basic",
+    "front": "When did **Enterprise Resource Planning (ERP)** emerge according to the history of Enterprise Applications?",
+    "back": "ERP emerged in the **1990s** [9]. It was preceded by Inventory Management Control (1960s), Materials Requirement Planning (MRP) (1970s), and Manufacturing Resource Planning II (MRP II) (1980s) [9].",
+    "tags": ["Enterprise Applications", "History", "ERP"]
+  },
+  {
+    "id": "card-013",
+    "type": "basic",
+    "front": "List two **installed markets** for Enterprise Applications.",
+    "back": "Two installed markets are **Banking** [10] and **Healthcare** [10]. Other markets include High Tech [10], Oil & Gas [10], Transport & Logistics [10], Chemical Aerospace [10], Shipping [10], Higher Education & Research [10], Engineering & Construction [10], Defense [10], Automotive Telecommunication [10], and Industrial Machinery [10].",
+    "tags": ["Enterprise Applications", "Markets"]
+  },
+  {
+    "id": "card-014",
+    "type": "basic",
+    "front": "What is a key **functional area** of Enterprise Applications related to managing a company's most valuable resources?",
+    "back": "The **Human Resource** functional area [10]. This includes managing resources cost-effectively, providing self-service tools for HR work and employee data, supporting recruitment, training management, expense management, time and attendance reporting, payroll administration, and employee development and certification [10, 11].",
+    "tags": ["Enterprise Applications", "Functional Areas", "HR"]
+  },
+  {
+    "id": "card-015",
+    "type": "basic",
+    "front": "How do Enterprise Applications support the **Sales** functional area?",
+    "back": "They handle business processes vital to **Customer Relationship Management (CRM)**, control service levels and activities, ensure accurate pricing, provide call center facilities, offer web stores, and simplify marketing and sales activities [11].",
+    "tags": ["Enterprise Applications", "Functional Areas", "Sales"]
+  },
+  {
+    "id": "card-016",
+    "type": "basic",
+    "front": "What is one aspect of the **Manufacturing** functional area in Enterprise Applications?",
+    "back": "One aspect is to **Plan, Execute, Control and Analyze Manufacturing** (Lean Manufacturing) [12]. Other aspects include multi-site planning [13], supporting Engineer to Order [13], costing [13], and floor reporting [13].",
+    "tags": ["Enterprise Applications", "Functional Areas", "Manufacturing"]
+  },
+  {
+    "id": "card-017",
+    "type": "basic",
+    "front": "What is a characteristic of Enterprise Applications regarding their **implementation**?",
+    "back": "Enterprise Applications typically involve **Lengthy Implementation** [14]. Other characteristics include Standardizing the Business Process [14], Involved Risk (Bankrupt/High Profits) [14], Slow Performance at the Beginning [14], Total Cost of Ownership [14], and Resistance to Change at the beginning [14].",
+    "tags": ["Enterprise Applications", "Characteristics"]
+  },
+  {
+    "id": "card-018",
+    "type": "basic",
+    "front": "Name one **advantage** of Enterprise Applications.",
+    "back": "One advantage is **Information Integration** [14]. Other advantages include Increased Productivity [14], Globalization Support with Multi Languages [14], and Improved Decision Making [15].",
+    "tags": ["Enterprise Applications", "Benefits"]
+  },
+  {
+    "id": "card-019",
+    "type": "basic",
+    "front": "What is a major **disadvantage** of Enterprise Applications?",
+    "back": "A major disadvantage is **High Product Cost** [15]. Other disadvantages include Training Cost [15], High Risk on Implementation [15], and Rigid on Customization [15].",
+    "tags": ["Enterprise Applications", "Disadvantages"]
+  },
+  {
+    "id": "card-020",
+    "type": "basic",
+    "front": "Provide an example of a **commercial ERP vendor**.",
+    "back": "An example is **SAP** [15]. Other commercial ERP vendors include Infor [15], Oracle [15] (JD Edward, E-business suit, PeopleSoft), IFS [15], Microsoft Dynamics [15], Compiere [15], and Sage Group [15].",
+    "tags": ["ERP", "Vendors"]
+  },
+  {
+    "id": "card-021",
+    "type": "basic",
+    "front": "According to **The Open Group**, what is **Enterprise Architecture** about?",
+    "back": "Enterprise Architecture is about **understanding all of the different elements that go to make up the enterprise and how those elements interrelate** [16].",
+    "tags": ["Enterprise Architecture", "Definitions"]
+  },
+  {
+    "id": "card-022",
+    "type": "basic",
+    "front": "What are the **logical components** of an Enterprise Architecture?",
+    "back": "The logical components are **Data**, **Business Logic**, and **Presentation** [17].",
+    "tags": ["Enterprise Architecture", "Components"]
+  },
+  {
+    "id": "card-023",
+    "type": "basic",
+    "front": "What is a consequence of developing software **without architecture**?",
+    "back": "A consequence is **Unpredictable Solutions** [18]. Other consequences include Poor Quality and Reduced User Experience [18], Stunted Evolution [18], and Rigid Systems (hard to reuse) [18].",
+    "tags": ["Software Architecture", "Consequences"]
+  },
+  {
+    "id": "card-024",
+    "type": "basic",
+    "front": "Name two types of **Software Architectures**.",
+    "back": "Two types are **Layered Architecture** [18] and **MVC Architecture** [18]. Other types include Component Based Architecture [18], Service Oriented Architecture [18], and Enterprise Architecture [18].",
+    "tags": ["Software Architecture", "Types"]
+  },
+  {
+    "id": "card-025",
+    "type": "basic",
+    "front": "What are the main layers in a **Multilayer Architecture**?",
+    "back": "The main layers are the **Presentation layer** (a.k.a UI layer, view layer, presentation tier), **Application layer** (a.k.a. service layer), **Business Layer** (a.k.a business logic layer), and **Data Access Layer** (a.k.a persistence layer) [19].",
+    "tags": ["Layered Architecture", "Components"]
+  },
+  {
+    "id": "card-026",
+    "type": "basic",
+    "front": "In **MVC architecture**, what is the responsibility of the **Model**?",
+    "back": "The **Model** represents an application’s data and contains the logic for accessing and manipulating that data [20].",
+    "tags": ["MVC Architecture", "Components"]
+  },
+  {
+    "id": "card-027",
+    "type": "basic",
+    "front": "What is the key benefit of **Service Oriented Architecture (SOA)**?",
+    "back": "The key benefit of SOA is **Agility** [21]. SOA is a loosely-coupled architecture designed to meet the business needs of the organization [21].",
+    "tags": ["SOA", "Benefits"]
+  },
+  {
+    "id": "card-028",
+    "type": "basic",
+    "front": "List two **key characteristics** of Service Oriented Architecture (SOA).",
+    "back": "Two key characteristics are **Loose coupling** [22] and **Reusability** [22]. Other characteristics include Implementation Neutral [22] and Abstraction [22].",
+    "tags": ["SOA", "Characteristics"]
+  },
+  {
+    "id": "card-029",
+    "type": "basic",
+    "front": "What is a '**Service**' in SOA?",
+    "back": "A **SERVICE** is the building block of SOA, a program which can interact through messages. A service remains stable, but its configurations will be changed, and a consistent interface enables consumers to use alternative services [23].",
+    "tags": ["SOA", "Definitions"]
+  },
+  {
+    "id": "card-030",
+    "type": "basic",
+    "front": "How is **Enterprise Application Architecture** commonly composed?",
+    "back": "It is commonly composed as a combination of **Layered Architecture + Component Architecture + Service Oriented Architecture** [23].",
+    "tags": ["Enterprise Architecture", "Composition"]
+  },
+  {
+    "id": "card-031",
+    "type": "basic",
+    "front": "What is one challenge of Enterprise Application Development (EAD) related to **programming productivity**?",
+    "back": "Applications must go quickly from prototype to production and must continue to evolve even after they are deployed, a challenge compounded by the current divergence of technologies and programming models [24].",
+    "tags": ["EAD Challenges", "Programming"]
+  },
+  {
+    "id": "card-032",
+    "type": "basic",
+    "front": "What is a **software framework**?",
+    "back": "A framework is a set of code or libraries which provide functionality common to a whole class of applications [25]. Frameworks are incomplete, though concrete, and drive solutions to recurring high-value problems [26, 27].",
+    "tags": ["Frameworks", "Definition"]
+  },
+  {
+    "id": "card-033",
+    "type": "basic",
+    "front": "How do **frameworks** increase **reliability** in software development?",
+    "back": "Using code which has already been built, tested, and used by other programmers increases reliability and reduces programming time [28].",
+    "tags": ["Frameworks", "Benefits"]
+  },
+  {
+    "id": "card-034",
+    "type": "basic",
+    "front": "Name two **features** that frameworks commonly support.",
+    "back": "Two features are **Software Designing** [29] and **Code Generation** [29]. Other features include Customizations, Translations and Localizations [29], Easy Integration with other Enterprise Applications [29], Testing Mechanisms [29], Code Repository [29], and Integrate with other 3rd party tools [29].",
+    "tags": ["Frameworks", "Features"]
+  },
+  {
+    "id": "card-035",
+    "type": "basic",
+    "front": "What are the two main **types** of frameworks?",
+    "back": "The two main types are **Client Frameworks** (e.g., Windows, Web, Mobile) and **Server Frameworks** [29]. There are also Integration Frameworks [29].",
+    "tags": ["Frameworks", "Types"]
+  },
+  {
+    "id": "card-036",
+    "type": "basic",
+    "front": "Provide an example of a **commercially available** enterprise development framework.",
+    "back": "An example is **Microsoft SharePoint and BizTalk** [30]. Other examples include Oracle Enterprise Development Framework (Fusion) [30], ‘the JBoss Way’ [30], Google App Engine [30], and EC2 - Amazon Web Services [30].",
+    "tags": ["Frameworks", "Commercial"]
+  },
+  {
+    "id": "card-037",
+    "type": "basic",
+    "front": "What is the primary goal of a **software development methodology**?",
+    "back": "The primary goal is to **structure, plan, and control** the process of developing an information system [31, 32].",
+    "tags": ["SDLC", "Methodologies"]
+  },
+  {
+    "id": "card-038",
+    "type": "basic",
+    "front": "Describe the **Waterfall methodology**.",
+    "back": "It is a **sequential development process** where development flows downwards, and each phase (**Requirement Gathering, Designing, Implementation, Testing and verifying, Maintaining**) must be complete before the next begins. It originated from the Manufacturing and Construction industries [32].",
+    "tags": ["SDLC", "Waterfall"]
+  },
+  {
+    "id": "card-039",
+    "type": "basic",
+    "front": "What is **software prototyping**?",
+    "back": "It is the process of implementing the **presumed software requirements** with an intention to learn more about the actual requirements or alternative designs that satisfy the actual set of requirements [33].",
+    "tags": ["SDLC", "Prototyping"]
+  },
+  {
+    "id": "card-040",
+    "type": "basic",
+    "front": "What is the objective of '**Evolutionary prototyping**'?",
+    "back": "The objective is to **Deliver a working system + requirements**; the system is built using well-understood requirements and evolves over time [34].",
+    "tags": ["SDLC", "Prototyping Types"]
+  },
+  {
+    "id": "card-041",
+    "type": "basic",
+    "front": "Name one **benefit** of software prototyping.",
+    "back": "One benefit is that it makes the developers **clear about the missing requirements** [35]. Other benefits include reducing loss by testing feasibility [35], having a working system beforehand [35], and involving the user in the system design [36].",
+    "tags": ["SDLC", "Prototyping Benefits"]
+  },
+  {
+    "id": "card-042",
+    "type": "basic",
+    "front": "What is a problem with **Incremental Development** related to **system structure**?",
+    "back": "Unless time and money is spent on refactoring, regular change tends to **corrupt the software structure**, making further software changes increasingly difficult and costly [37].",
+    "tags": ["SDLC", "Incremental Development"]
+  },
+  {
+    "id": "card-043",
+    "type": "basic",
+    "front": "What distinguishes **Incremental Delivery** from Incremental Development?",
+    "back": "Incremental Delivery involves **deploying an increment for use by end-users** [38], leading to a more realistic evaluation of the software's practical use [39], whereas Incremental Development typically involves evaluation by a user or customer proxy [38].",
+    "tags": ["SDLC", "Incremental Delivery"]
+  },
+  {
+    "id": "card-044",
+    "type": "basic",
+    "front": "What is the key advantage of the **Rapid Application Development (RAD)** model?",
+    "back": "The key advantage is **time and cost saving**, as it favors rapid prototyping over extensive planning and functional modules are developed in parallel as prototypes [40].",
+    "tags": ["SDLC", "RAD"]
+  },
+  {
+    "id": "card-045",
+    "type": "basic",
+    "front": "Name the four **phases** of the **Rational Unified Process (RUP)**.",
+    "back": "The four phases are **Inception**, **Elaboration**, **Construction**, and **Transition** [40, 41].",
+    "tags": ["SDLC", "RUP"]
+  },
+  {
+    "id": "card-046",
+    "type": "basic",
+    "front": "What is a characteristic of **Extreme Programming (XP)** regarding team collaboration?",
+    "back": "A key characteristic is **Pair Programming** (along with strict coding standards) [42]. XP also features 1-3 week iterations, incremental functionality, and user stories [42].",
+    "tags": ["SDLC", "XP", "Agile"]
+  },
+  {
+    "id": "card-047",
+    "type": "basic",
+    "front": "Define '**Agility**' in the context of software development.",
+    "back": "Agility is the **'Ability to adapt and react in a quick and efficient way to the changes in the environment and to demands imposed by the environment'** [42].",
+    "tags": ["Agile", "Definitions"]
+  },
+  {
+    "id": "card-048",
+    "type": "basic",
+    "front": "What is a '**Sprint**' in Scrum methodology?",
+    "back": "A **Sprint** is an iteration, a sequence of development activities that deliver consistent, integrated, and tested increments of software. Sprints have fixed functionality and are performed by a self-organizing and self-accountable team [43].",
+    "tags": ["Agile", "Scrum"]
+  },
+  {
+    "id": "card-049",
+    "type": "basic",
+    "front": "What are the two levels of **planning** in Agile methodologies?",
+    "back": "The two levels of planning are the **Project Plan** (coarse-grained, long range, less precise) and the **Iteration Plan** (short run, estimates investment and precision) [44].",
+    "tags": ["Agile", "Planning"]
+  },
+  {
+    "id": "card-050",
+    "type": "basic",
+    "front": "What is **Cloud Computing**?",
+    "back": "Cloud computing is the **delivery of computing as a service rather than a product**, where shared resources, software, and information are provided to computers and other devices as a utility over a network [45].",
+    "tags": ["Cloud Computing", "Definition"]
+  },
+  {
+    "id": "card-051",
+    "type": "mcq",
+    "front": "Which of the following is NOT a Cloud **Deployment Model**?",
+    "back": "Software as a Service (SaaS)",
+    "options": ["Public Cloud", "Private Cloud", "Hybrid Cloud", "Software as a Service (SaaS)"],
+    "answerIndex": 3,
+    "tags": ["Cloud Computing", "Deployment Models"]
+  },
+  {
+    "id": "card-052",
+    "type": "basic",
+    "front": "What does **IaaS** stand for and what does it primarily provide?",
+    "back": "IaaS stands for **Infrastructure as a Service**. It provides access to **fundamental resources** such as physical machines, virtual machines, virtual storage, VLANs, load balancers, and IP addresses, typically via server virtualization [46, 47].",
+    "tags": ["Cloud Computing", "Service Models", "IaaS"]
+  },
+  {
+    "id": "card-053",
+    "type": "basic",
+    "front": "What does **PaaS** stand for and what does it primarily offer?",
+    "back": "PaaS stands for **Platform as a Service**. It offers the **runtime environment for applications**, along with development and deployment tools required to develop applications [46, 48].",
+    "tags": ["Cloud Computing", "Service Models", "PaaS"]
+  },
+  {
+    "id": "card-054",
+    "type": "basic",
+    "front": "What does **SaaS** stand for and how is software typically delivered?",
+    "back": "SaaS stands for **Software as a Service**. It offers software applications as a service to end users, deployed on a hosted service and accessible via the Internet, often with little or no client-side installation [46, 49].",
+    "tags": ["Cloud Computing", "Service Models", "SaaS"]
+  },
+  {
+    "id": "card-055",
+    "type": "basic",
+    "front": "Name one **risk** associated with Cloud Computing.",
+    "back": "One risk is **Security & Privacy**, as data and infrastructure management are provided by third-parties [50]. Other risks include Lock-In [51], Isolation Failure [51], Management Interface Compromise [51], and Insecure or Incomplete Data Deletion [52].",
+    "tags": ["Cloud Computing", "Risks"]
+  },
+  {
+    "id": "card-056",
+    "type": "basic",
+    "front": "List one **characteristic** of Cloud Computing.",
+    "back": "One characteristic is **On Demand Self Service** [52]. Others include Broad Network Access [52], Resource Pooling [52], Rapid Elasticity [53], and Measured Service [53].",
+    "tags": ["Cloud Computing", "Characteristics"]
+  },
+  {
+    "id": "card-057",
+    "type": "basic",
+    "front": "What is the underlying technology that allows sharing a single physical instance of an application or resource among multiple tenants in cloud computing?",
+    "back": "The underlying technology is **Virtualization** [54].",
+    "tags": ["Cloud Computing", "Technologies"]
+  },
+  {
+    "id": "card-058",
+    "type": "basic",
+    "front": "How does **Utility Computing** relate to Cloud Computing?",
+    "back": "Utility computing is based on the **Pay per Use model**, offering computational resources on demand as a metered service. Cloud computing, along with grid computing and managed IT services, is based on this concept [55].",
+    "tags": ["Cloud Computing", "Technologies", "Utility Computing"]
+  },
+  {
+    "id": "card-059",
+    "type": "basic",
+    "front": "What are the two broad parts of **Cloud Computing Architecture**?",
+    "back": "The two parts are the **Front end** (the client part, including interfaces and applications like web browsers) and the **Back end** (the cloud itself, consisting of resources like data storage, virtual machines, and servers) [55, 56].",
+    "tags": ["Cloud Computing", "Architecture"]
+  },
+  {
+    "id": "card-060",
+    "type": "basic",
+    "front": "What is **Enterprise Application Integration (EAI)**?",
+    "back": "EAI is the **unrestricted sharing of data and business processes** among any connected applications and data sources in the enterprise. It represents a technology-business philosophy focused on business issues [57, 58].",
+    "tags": ["EAI", "Integration", "Definition"]
+  },
+  {
+    "id": "card-061",
+    "type": "basic",
+    "front": "Name one type of **Enterprise Application Integration (EAI)**.",
+    "back": "One type is **Data Level EAI** [58]. Other types include Application Interface Level EAI [58], Method-level EAI [58], and User Interface Level EAI (also known as Screen Scraping) [58, 59].",
+    "tags": ["EAI", "Types"]
+  },
+  {
+    "id": "card-062",
+    "type": "basic",
+    "front": "What is a **Message Broker**?",
+    "back": "A Message Broker is a software system that **brokers information (messages) between one or more target entities** (networks, middleware, applications, and/or systems). It is based on Asynchronous, Store and Forward messaging and allows data to be shared across existing systems [59].",
+    "tags": ["EAI", "Message Broker"]
+  },
+  {
+    "id": "card-063",
+    "type": "basic",
+    "front": "What service does a Message Broker's **Message Transformation Layer** provide?",
+    "back": "It **restructures messages** from the source application into a new format that makes sense to the receiving application, including Schema Conversion, Data Conversion, and Logical Operator conversion [60-62].",
+    "tags": ["Message Broker", "Transformation"]
+  },
+  {
+    "id": "card-064",
+    "type": "basic",
+    "front": "What is **Green IT**?",
+    "back": "Green IT is about **reducing and managing the eco footprint using Information and Communication Technology** [63]. This involves minimizing the negative impact of IT on the environment and using IT to help solve environmental issues [63].",
+    "tags": ["Green IT", "Definition"]
+  },
+  {
+    "id": "card-065",
+    "type": "basic",
+    "front": "How can **Software and Development Optimization** contribute to **Green IT** regarding **electronic waste**?",
+    "back": "It contributes by **promoting reuse** and **optimizing the use of infrastructure**, taking into account factors like time to execute a query and data volume [64].",
+    "tags": ["Green IT", "Optimization"]
+  },
+  {
+    "id": "card-066",
+    "type": "basic",
+    "front": "What is one way IT can help solve **environmental issues**?",
+    "back": "One way is through **Product longevity** [65]. Other ways include Data center design [65], Software and deployment optimization [65], Power management [65], Materials recycling [65], and Cloud computing [65].",
+    "tags": ["Green IT", "Solutions"]
+  },
+  {
+    "id": "card-067",
+    "type": "basic",
+    "front": "Name a **certification** related to **Green Computing**.",
+    "back": "One certification is **Certified Green Computing User Specialist (CGCUS)** [65]. Other certifications include Certified Green Computing Architect (CGCA) [66], Certified Green Computing Professional (CGCP) [66], CompTIA Strata Green IT [66], and certificates from ISEB/BCS [66], SiTF [66, 67], or ACS [67].",
+    "tags": ["Green IT", "Certifications"]
+  },
+  {
+    "id": "card-068",
+    "type": "basic",
+    "front": "What is one **advantage** of using **Software Design Patterns**?",
+    "back": "One advantage is that they make it **easier to reuse successful Designs and Architectures** [68]. Other advantages include capturing software engineering experiences [69], providing transparency to the design [69], and being well-proved solutions [69].",
+    "tags": ["Design Patterns", "Benefits"]
+  },
+  {
+    "id": "card-069",
+    "type": "basic",
+    "front": "What are the two criteria used to categorize **Design Patterns** in the **Design Pattern Space**?",
+    "back": "The two criteria are **Purpose** (what the pattern does) and **Scope** (whether the pattern applies primarily to a Class or an Object) [70].",
+    "tags": ["Design Patterns", "Categorization"]
+  },
+  {
+    "id": "card-070",
+    "type": "mcq",
+    "front": "Which Design Pattern **Purpose** deals with the **process of Object creation**?",
+    "back": "Creational",
+    "options": ["Structural", "Behavioral", "Creational", "Observational"],
+    "answerIndex": 2,
+    "tags": ["Design Patterns", "Purpose"]
+  },
+  {
+    "id": "card-071",
+    "type": "basic",
+    "front": "What is the **Singleton** design pattern used for?",
+    "back": "It is used when **only one instance of an object is needed** throughout the lifetime of an application, and it provides a global way to access that sole instance [71, 72].",
+    "tags": ["Design Patterns", "Creational", "Singleton"]
+  },
+  {
+    "id": "card-072",
+    "type": "basic",
+    "front": "Give an example of a **real-world application** of the **Singleton pattern**.",
+    "back": "A real-world example is the **Windows Clipboard** [73]. Another example is the Windows Registry (System Parameters) [73].",
+    "tags": ["Design Patterns", "Singleton", "Examples"]
+  },
+  {
+    "id": "card-073",
+    "type": "basic",
+    "front": "What problem does the **Factory Method** design pattern solve?",
+    "back": "It defines an interface for creating an object but lets the **subclasses decide which class to instantiate**. This is useful when a single class cannot predict the objects it needs to create, or when it wants its subclasses to specify them [74].",
+    "tags": ["Design Patterns", "Creational", "Factory Method"]
+  },
+  {
+    "id": "card-074",
+    "type": "basic",
+    "front": "When would you use the **Adapter (Wrapper)** design pattern?",
+    "back": "You would use it to **convert the interface of a class into another interface clients expect**, allowing classes that couldn’t otherwise work together because of incompatible interfaces to do so [75].",
+    "tags": ["Design Patterns", "Structural", "Adapter"]
+  },
+  {
+    "id": "card-075",
+    "type": "basic",
+    "front": "What is **Malware**?",
+    "back": "Malware, short for malicious software, is any software used to **disrupt computer operations, gather sensitive information, or gain access to private computer systems** [76]. It is often deployed by black hat hackers using viruses, worms, Trojan Horses, and backdoors [76].",
+    "tags": ["Security", "Malware", "Definition"]
+  }
+]

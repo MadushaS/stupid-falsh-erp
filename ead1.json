@@ -1,0 +1,218 @@
+[
+  {
+    "id": "card-001",
+    "type": "basic",
+    "front": "What was the initial attempt behind the inception of Enterprise Applications?",
+    "back": "To integrate all departments and functions across a company into one single computer system, which serves all different needs [1].",
+    "tags": ["history", "enterprise-applications"]
+  },
+  {
+    "id": "card-002",
+    "type": "basic",
+    "front": "What was the focus of enterprise application evolution in the 1960s?",
+    "back": "Inventory Management Control [1].",
+    "tags": ["history", "evolution"]
+  },
+  {
+    "id": "card-003",
+    "type": "basic",
+    "front": "What phase of enterprise application evolution occurred in the 1970s?",
+    "back": "Materials Requirement Planning (MRP) [1].",
+    "tags": ["history", "evolution"]
+  },
+  {
+    "id": "card-004",
+    "type": "cloze",
+    "front": "In the 1990s, the evolution of enterprise applications led to the development of {{c1::Enterprise Resource Planning (ERP)}} [1].",
+    "back": "Enterprise Resource Planning (ERP)",
+    "tags": ["history", "evolution", "ERP"]
+  },
+  {
+    "id": "card-005",
+    "type": "basic",
+    "front": "What did ERP evolve into in the 2000s?",
+    "back": "Extended ERP (ERP II) [1].",
+    "tags": ["history", "evolution", "ERP"]
+  },
+  {
+    "id": "card-006",
+    "type": "mcq",
+    "front": "Which of the following is listed as an 'Installed Market' for Enterprise Applications?",
+    "back": "Healthcare",
+    "options": ["Small Businesses", "Healthcare", "Individual Consumers", "Local Shops"],
+    "answerIndex": 1,
+    "tags": ["markets"]
+  },
+  {
+    "id": "card-007",
+    "type": "basic",
+    "front": "Name two installed markets for Enterprise Applications.",
+    "back": "Banking and High Tech [2]. (Other valid answers include Oil & Gas, Healthcare, Transport & Logistics, Chemical Aerospace, Shipping, Higher Education & Research, Engineering & Construction, Defense, Automotive, Telecommunication, Industrial Machinery)",
+    "tags": ["markets"]
+  },
+  {
+    "id": "card-008",
+    "type": "basic",
+    "front": "What is one of the primary goals of the Human Resource functional area in Enterprise Applications?",
+    "back": "To manage the company’s most valuable resources cost effectively [2].",
+    "tags": ["functional-areas", "HR"]
+  },
+  {
+    "id": "card-009",
+    "type": "cloze",
+    "front": "The Human Resource functional area supports {{c1::recruitment}} and {{c2::training management}} [2].",
+    "back": "recruitment, training management",
+    "tags": ["functional-areas", "HR"]
+  },
+  {
+    "id": "card-010",
+    "type": "basic",
+    "front": "What does the Sales functional area handle to add value to the customer?",
+    "back": "Business processes vital to Customer Relationship Management (CRM) [3].",
+    "tags": ["functional-areas", "sales"]
+  },
+  {
+    "id": "card-011",
+    "type": "basic",
+    "front": "What specific feature do Enterprise Applications provide in the Sales functional area for product display?",
+    "back": "A web store to display the products [3].",
+    "tags": ["functional-areas", "sales"]
+  },
+  {
+    "id": "card-012",
+    "type": "basic",
+    "front": "What is the purpose of 'Asset Data management' within the Engineering functional area?",
+    "back": "To manage machineries and power grids in the plant [4].",
+    "tags": ["functional-areas", "engineering"]
+  },
+  {
+    "id": "card-013",
+    "type": "basic",
+    "front": "What principle of manufacturing is supported by Enterprise Applications within the Manufacturing functional area?",
+    "back": "Lean Manufacturing [4].",
+    "tags": ["functional-areas", "manufacturing"]
+  },
+  {
+    "id": "card-014",
+    "type": "basic",
+    "front": "What manufacturing function identifies the associated cost for a product?",
+    "back": "Costing [5].",
+    "tags": ["functional-areas", "manufacturing"]
+  },
+  {
+    "id": "card-015",
+    "type": "basic",
+    "front": "In the Distribution functional area, how is forecasting supported?",
+    "back": "Through demand planning in a graphical manner [5].",
+    "tags": ["functional-areas", "distribution"]
+  },
+  {
+    "id": "card-016",
+    "type": "basic",
+    "front": "What does the Transport functional area enable for goods and services?",
+    "back": "Efficient and cost-effective transport activities [6].",
+    "tags": ["functional-areas", "transport"]
+  },
+  {
+    "id": "card-017",
+    "type": "cloze",
+    "front": "The Transport functional area can optimize the path needing to be traveled and track positions using {{c1::GPS locators}} [6].",
+    "back": "GPS locators",
+    "tags": ["functional-areas", "transport"]
+  },
+  {
+    "id": "card-018",
+    "type": "basic",
+    "front": "What does MRO stand for in the context of the Maintenance functional area?",
+    "back": "Maintenance, Repair and Operation [7].",
+    "tags": ["functional-areas", "maintenance"]
+  },
+  {
+    "id": "card-019",
+    "type": "basic",
+    "front": "What type of maintenance is emphasized in the Maintenance functional area for regular upkeep?",
+    "back": "Preventive maintenance [7].",
+    "tags": ["functional-areas", "maintenance"]
+  },
+  {
+    "id": "card-020",
+    "type": "basic",
+    "front": "How does the Financials functional area support cash flow management?",
+    "back": "Via customer order, purchase order with accounts receivable and payable [7].",
+    "tags": ["functional-areas", "financials"]
+  },
+  {
+    "id": "card-021",
+    "type": "basic",
+    "front": "What financial activity is automated by Enterprise Applications within the Financials functional area?",
+    "back": "Invoice handling [8].",
+    "tags": ["functional-areas", "financials"]
+  },
+  {
+    "id": "card-022",
+    "type": "basic",
+    "front": "For what type of manufacturing are Enterprise Applications recommended under the Projects functional area?",
+    "back": "Project based manufacturing [8].",
+    "tags": ["functional-areas", "projects"]
+  },
+  {
+    "id": "card-023",
+    "type": "basic",
+    "front": "What is a characteristic of the nature of Enterprise Applications regarding implementation?",
+    "back": "Lengthy Implementation [9].",
+    "tags": ["nature", "characteristics"]
+  },
+  {
+    "id": "card-024",
+    "type": "mcq",
+    "front": "Which of the following is a characteristic of the nature of Enterprise Applications?",
+    "back": "Resistance to Change at the beginning",
+    "options": ["Quick Deployment", "Low Initial Cost", "Resistance to Change at the beginning", "High Customization Flexibility"],
+    "answerIndex": 2,
+    "tags": ["nature", "characteristics"]
+  },
+  {
+    "id": "card-025",
+    "type": "basic",
+    "front": "What is one of the key advantages (pros) of Enterprise Applications?",
+    "back": "Information Integration [9]. (Other valid answers include Increased Productivity, Globalization Support with Multi Languages, Improved Decision Making)",
+    "tags": ["pros"]
+  },
+  {
+    "id": "card-026",
+    "type": "cloze",
+    "front": "Enterprise Applications offer {{c1::Globalization Support}} with Multi Languages as a key advantage [9].",
+    "back": "Globalization Support",
+    "tags": ["pros"]
+  },
+  {
+    "id": "card-027",
+    "type": "basic",
+    "front": "What is a significant disadvantage (con) of Enterprise Applications related to cost?",
+    "back": "High Product Cost [10].",
+    "tags": ["cons"]
+  },
+  {
+    "id": "card-028",
+    "type": "basic",
+    "front": "What disadvantage of Enterprise Applications is related to personnel?",
+    "back": "Training Cost [10].",
+    "tags": ["cons"]
+  },
+  {
+    "id": "card-029",
+    "type": "mcq",
+    "front": "Which of the following is listed as a disadvantage of Enterprise Applications?",
+    "back": "Rigid on Customization",
+    "options": ["Flexible Development", "Low Implementation Risk", "Rigid on Customization", "Short Implementation Cycles"],
+    "answerIndex": 2,
+    "tags": ["cons"]
+  },
+  {
+    "id": "card-030",
+    "type": "basic",
+    "front": "Name one example of a Commercial ERP vendor.",
+    "back": "SAP [10]. (Other valid answers include Infor, Oracle (JD Edward, E-business suite, PeopleSoft), IFS, Microsoft Dynamics, Compiere, Sage Group)",
+    "tags": ["ERP", "commercial-ERPs"]
+  }
+]

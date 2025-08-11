@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Universal Flashcards - Clean, Distraction Free</title>
+<style>
+/* Clean, spacious, single-file UI
+   - Full screen, centered card
+   - Hidden panels for nonessential controls
+   - Large typography and generous spacing
+   - System font stack only
+*/
+:root{
+  --bg:#f6f7f8;
+  --panel:#ffffff;
+  --muted:#6b7280;
+  --accent:#0ea5a4;
+  --accent-2:#60a5fa;
+  --shadow: 0 12px 40px rgba(16,24,40,0.08);
+  --radius:14px;
+  --maxw:1200px;
+  --gap:28px;
+  --card-pad:48px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#0f1724}
+.app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px}
+.shell{width:100%;max-width:var(--maxw);display:grid;grid-template-columns:1fr;gap:var(--gap);align-items:start;}
+
+/* Topbar - minimal */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.title{font-size:16px;font-weight:700}
+.controls{display:flex;gap:8px;align-items:center}
+.icon-btn{background:transparent;border:1px solid rgba(15,23,36,0.04);padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.icon-btn:focus{outline:2px solid rgba(96,165,250,0.12)}
+.small-note{font-size:13px;color:var(--muted)}
+
+/* Main area */
+.main{display:grid;grid-template-columns:320px 1fr 320px;gap:var(--gap);align-items:start}
+@media (max-width:1100px){ .main{grid-template-columns:1fr;padding:0 8px} .side, .side-right{display:none} }
+
+.side{background:var(--panel);padding:18px;border-radius:12px;box-shadow:var(--shadow);height:fit-content;align-self:start}
+.side h3{margin:0;margin-bottom:12px;font-size:14px;color:#0f1724}
+.uploader{border:1px dashed rgba(15,23,36,0.05);padding:14px;border-radius:10px;text-align:center;color:var(--muted);cursor:pointer}
+.meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pill{background:rgba(15,23,36,0.03);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+.search{margin-top:12px}
+.input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:transparent;font-size:14px;color:#0f1724}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tag{padding:8px 10px;border-radius:999px;background:rgba(15,23,36,0.03);cursor:pointer;color:var(--muted);font-size:13px}
+
+/* Center card */
+.center{display:flex;flex-direction:column;align-items:center;gap:18px;min-height:72vh;justify-content:center}
+.card-wrap{width:100%;display:flex;justify-content:center}
+.card{width:min(900px,90vw);background:var(--panel);border-radius:16px;box-shadow:var(--shadow);padding:var(--card-pad);display:flex;flex-direction:column;align-items:center;gap:20px;min-height:48vh;max-height:80vh;position:relative}
+.card-stage{flex:1;display:flex;align-items:center;justify-content:center;width:100%;padding:8px}
+.front,.back{width:100%;text-align:center;line-height:1.25;word-wrap:break-word}
+.front{font-size:2.1rem;font-weight:700;color:#0f1724;white-space:pre-wrap}
+.back{font-size:1.15rem;color:var(--muted);display:none;white-space:pre-wrap}
+.card-meta{position:absolute;top:18px;left:18px;font-size:13px;color:var(--muted)}
+.card-tags{position:absolute;top:18px;right:18px;font-size:13px;color:var(--muted)}
+
+/* Options / MCQ */
+.options{width:100%;display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
+.option{padding:14px;border-radius:12px;border:1px solid rgba(15,23,36,0.04);background:transparent;cursor:pointer;text-align:left;font-weight:600}
+.option.correct{outline:3px solid rgba(16,185,129,0.12);background:rgba(16,185,129,0.04)}
+.option.wrong{outline:3px solid rgba(239,68,68,0.12);background:rgba(239,68,68,0.04)}
+.hint{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* Bottom controls */
+.controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px;width:100%}
+.btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+.btn.again{background:#fff2f2;color:#b91c1c;border:1px solid rgba(0,0,0,0.04)}
+.btn.hard{background:#fff7ed;color:#92400e;border:1px solid rgba(0,0,0,0.04)}
+.btn.good{background:#ecfccb;color:#166534;border:1px solid rgba(0,0,0,0.04)}
+.btn.easy{background:#eff6ff;color:#0f172a;border:1px solid rgba(0,0,0,0.04)}
+.progress-wrap{width:100%;max-width:900px;padding:0 12px;display:flex;align-items:center;gap:12px}
+.progress{flex:1;height:10px;background:rgba(15,23,36,0.05);border-radius:999px;overflow:hidden}
+.progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
+
+/* Right side */
+.side-right{background:var(--panel);padding:18px;border-radius:12px;box-shadow:var(--shadow);height:fit-content;align-self:start}
+.side-right h3{margin:0;margin-bottom:12px;font-size:14px;color:#0f1724}
+.small{font-size:13px;color:var(--muted)}
+.controls-compact{display:flex;flex-direction:column;gap:8px}
+.select{padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:transparent;font-size:14px;color:#0f1724}
+
+/* subtle footer note */
+.footer-note{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+
+/* states */
+.hidden{display:none}
+.empty{color:var(--muted);padding:14px;text-align:center}
+kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="shell">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">UF</div>
+        <div>
+          <div class="title" id="deckName">Universal Flashcards</div>
+          <div class="small-note" id="deckSubtitle">Load a deck to begin</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="importBtn" class="icon-btn" title="Import JSON or CSV">Import</button>
+        <button id="exportBtn" class="icon-btn" title="Export deck">Export</button>
+        <button id="clearBtn" class="icon-btn" title="Clear deck">Clear</button>
+        <button id="settingsBtn" class="icon-btn" title="Shortcuts">Shortcuts</button>
+      </div>
+    </div>
+
+    <!-- Main content: left side, center card, right side -->
+    <div class="main">
+
+      <!-- Left panel: import, filters -->
+      <aside class="side">
+        <h3>Deck Controls</h3>
+        <div class="uploader" id="uploader">Drop JSON / CSV here or click to import</div>
+
+        <div class="meta-row">
+          <div class="pill">Cards <span id="cardCount">0</span></div>
+          <div class="pill">Due <span id="dueCount">0</span></div>
+          <div class="pill">Tags <span id="tagCount">0</span></div>
+        </div>
+
+        <div class="search">
+          <input id="search" class="input" placeholder="Search front, back, tags" />
+        </div>
+
+        <div style="margin-top:16px">
+          <div class="small">Mode</div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <label class="tag"><input type="radio" name="mode" id="modeDue" checked> Due</label>
+            <label class="tag"><input type="radio" name="mode" id="modeAll"> All</label>
+            <label class="tag"><input type="radio" name="mode" id="modeCram"> Cram</label>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div class="small">Order</div>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <label class="tag"><input type="radio" name="order" id="orderDue" checked> By due</label>
+            <label class="tag"><input type="radio" name="order" id="orderRand"> Random</label>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <h3 style="margin-bottom:8px">Tags</h3>
+          <div id="tagList" class="tags"><div class="small muted">No tags</div></div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div class="small">Quick options</div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <label class="small"><input type="checkbox" id="autoMCQ" checked> Auto MCQ</label>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+            <label class="small">Short retry minutes</label>
+            <select id="retryMinutes" class="select" style="width:100px">
+              <option value="0">none</option>
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center: big card -->
+      <main class="center">
+        <div class="card-wrap">
+          <div class="card" id="cardArea" tabindex="0">
+            <div class="card-meta" id="cardDue">due: -</div>
+            <div class="card-tags" id="cardTags"></div>
+
+            <div class="card-stage">
+              <div class="front" id="cardFront">Load a deck or import file to begin</div>
+              <div class="back" id="cardBack"></div>
+            </div>
+
+            <div id="optionsArea" class="options"></div>
+            <div class="hint" id="hint">Space - flip. 1/2/3/4 for scoring. Click option to choose.</div>
+          </div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="small-note" id="stats">0 / 0</div>
+          <div class="progress"><i id="progressFill"></i></div>
+          <div class="small-note" id="progressPct">0%</div>
+        </div>
+
+        <div class="controls-bar">
+          <button class="btn again" data-score="0">1 Again</button>
+          <button class="btn hard" data-score="3">2 Hard</button>
+          <button class="btn good" data-score="4">3 Good</button>
+          <button class="btn easy" data-score="5">4 Easy</button>
+        </div>
+
+      </main>
+
+      <!-- Right: session and misc -->
+      <aside class="side-right">
+        <h3>Session</h3>
+        <div class="small">Current deck: <span id="deckLabel">empty</span></div>
+        <div style="margin-top:12px" class="controls-compact">
+          <button id="prevBtn" class="icon-btn">Prev</button>
+          <button id="nextBtn" class="icon-btn">Next</button>
+          <button id="shuffleBtn" class="icon-btn">Shuffle</button>
+          <button id="exportSrsBtn" class="icon-btn">Download JSON</button>
+        </div>
+
+        <div style="margin-top:14px">
+          <h3>Shortcuts</h3>
+          <div class="small">
+            Space: flip card<br>
+            1: Again, 2: Hard, 3: Good, 4: Easy<br>
+            Arrow L/R: Prev/Next
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <h3>Notes</h3>
+          <div class="small">
+            Cloze: use {{c1::text}} in front. CSV options must be pipe separated. MCQ correct option should be first or set answerIndex.
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <div class="footer-note">Client only. Data stays local unless you export it.</div>
+
+  </div>
+</div>
+
+<!-- hidden file input -->
+<input id="fileInput" type="file" accept=".json,.csv,.txt" style="display:none">
+
+<script>
+/* Full single-file app JS
+   - Parse JSON or CSV (simple but robust)
+   - Standardize card fields to: id,type,front,back,options,answerIndex,tags,srs
+   - SM-2 like SRS
+   - Modes: due / all / cram
+   - Auto MCQ sampling
+   - LocalStorage persistence
+*/
+
+/* ---------- Utilities ---------- */
+const qs = s => document.querySelector(s);
+const qsa = s => Array.from(document.querySelectorAll(s));
+const dayMs = 24*60*60*1000;
+
+function now(){ return Date.now(); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function clamp(v,a,b){ return Math.max(a, Math.min(b,v)); }
+function shuffleArray(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+/* ---------- State ---------- */
+let deck = {name:'untitled', cards:[]}; // canonical storage (persisted)
+let queue = []; // current session queue (references into deck.cards)
+let currentIndex = 0;
+let sessionAnswered = 0;
+let sessionTotal = 0;
+
+/* Elements */
+const fileInput = qs('#fileInput');
+const uploader = qs('#uploader');
+const importBtn = qs('#importBtn');
+const exportBtn = qs('#exportBtn');
+const clearBtn = qs('#clearBtn');
+const settingsBtn = qs('#settingsBtn');
+const cardFront = qs('#cardFront');
+const cardBack = qs('#cardBack');
+const cardArea = qs('#cardArea');
+const optionsArea = qs('#optionsArea');
+const cardDueEl = qs('#cardDue');
+const cardTagsEl = qs('#cardTags');
+const cardCountEl = qs('#cardCount');
+const dueCountEl = qs('#dueCount');
+const tagCountEl = qs('#tagCount');
+const searchEl = qs('#search');
+const tagListEl = qs('#tagList');
+const statsEl = qs('#stats');
+const progressFill = qs('#progressFill');
+const progressPct = qs('#progressPct');
+const deckNameEl = qs('#deckName');
+const deckSubtitleEl = qs('#deckSubtitle');
+const deckLabelEl = qs('#deckLabel');
+const retryMinutesEl = qs('#retryMinutes');
+const autoMCQEl = qs('#autoMCQ');
+
+/* buttons */
+qsa('.btn').forEach(b=> b.addEventListener('click', e=> markQuality(Number(e.currentTarget.dataset.score))));
+qs('#prevBtn').addEventListener('click', prevCard);
+qs('#nextBtn').addEventListener('click', nextCard);
+qs('#shuffleBtn').addEventListener('click', ()=>{ shuffleArray(queue); currentIndex=0; showCardAt(currentIndex); });
+qs('#exportSrsBtn').addEventListener('click', exportDeckJson);
+importBtn.addEventListener('click', ()=> fileInput.click());
+uploader.addEventListener('click', ()=> fileInput.click());
+fileInput.addEventListener('change', e=> handleFiles(e.target.files));
+exportBtn.addEventListener('click', exportDeckJson);
+clearBtn.addEventListener('click', clearDeck);
+
+/* drag and drop */
+uploader.addEventListener('dragover', e=>{ e.preventDefault(); uploader.style.borderColor='rgba(96,165,250,0.3)'; });
+uploader.addEventListener('dragleave', e=>{ uploader.style.borderColor=''; });
+uploader.addEventListener('drop', e=>{ e.preventDefault(); uploader.style.borderColor=''; handleFiles(e.dataTransfer.files); });
+
+/* keyboard */
+document.addEventListener('keydown', e=>{
+  if(e.code === 'Space'){ e.preventDefault(); toggleFlip(); }
+  if(e.key === '1') markQuality(0);
+  if(e.key === '2') markQuality(3);
+  if(e.key === '3') markQuality(4);
+  if(e.key === '4') markQuality(5);
+  if(e.key === 'ArrowRight') nextCard();
+  if(e.key === 'ArrowLeft') prevCard();
+});
+
+/* ---------- Persistence ---------- */
+const STORAGE_KEY = 'uf_deck_v1';
+function saveToStorage(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(deck));
+  }catch(e){ console.warn('save failed', e); }
+}
+function loadFromStorage(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    deck = JSON.parse(raw);
+    // ensure srs for each card
+    initSrsForNewCards(deck.cards);
+    refreshUI();
+    startSession();
+    return true;
+  }catch(e){ console.warn('load failed', e); return false; }
+}
+
+/* ---------- Parsing ---------- */
+async function handleFiles(files){
+  if(!files || files.length===0) return;
+  const f = files[0];
+  const text = await f.text().catch(()=>null);
+  if(!text) return alert('Could not read file');
+  if(f.name.toLowerCase().endsWith('.json') || looksLikeJSON(text)){
+    try{
+      const parsed = JSON.parse(text);
+      const arr = normalizeJSON(parsed);
+      loadCards(arr, f.name.replace(/\.[^/.]+$/, ''));
+    }catch(err){
+      alert('Invalid JSON: ' + err.message);
+    }
+  } else {
+    const arr = csvToObjects(text);
+    loadCards(arr, f.name.replace(/\.[^/.]+$/, ''));
+  }
+}
+
+function looksLikeJSON(t){ return t.trim().startsWith('[') || t.trim().startsWith('{'); }
+
+function normalizeJSON(data){
+  if(Array.isArray(data)) return data;
+  if(data.cards && Array.isArray(data.cards)) return data.cards;
+  if(typeof data === 'object'){
+    const vals = Object.values(data).filter(v=> typeof v === 'object');
+    if(vals.length) return vals;
+  }
+  return [];
+}
+
+function csvToObjects(text){
+  const lines = text.split(/\r?\n/).filter(l=> l.trim().length>0);
+  if(lines.length===0) return [];
+  const headers = splitCsvLine(lines[0]).map(h=>h.trim());
+  const rows = [];
+  for(let i=1;i<lines.length;i++){
+    const cells = splitCsvLine(lines[i]);
+    if(cells.length === 0) continue;
+    const obj = {};
+    for(let j=0;j<headers.length;j++){
+      obj[headers[j]] = (cells[j] || '').trim();
+    }
+    rows.push(obj);
+  }
+  return rows;
+}
+
+function splitCsvLine(line){
+  const cells = [];
+  let cur = '', inQuotes = false;
+  for(let i=0;i<line.length;i++){
+    const ch = line[i];
+    if(ch === '"'){
+      if(inQuotes && line[i+1] === '"'){ cur += '"'; i++; continue; }
+      inQuotes = !inQuotes;
+      continue;
+    }
+    if(ch === ',' && !inQuotes){ cells.push(cur); cur=''; continue; }
+    cur += ch;
+  }
+  cells.push(cur);
+  return cells;
+}
+
+/* ---------- Standardize ---------- */
+function standardizeCard(obj, idx){
+  const lowered = {};
+  Object.keys(obj || {}).forEach(k=> lowered[k.toLowerCase().trim()] = obj[k]);
+
+  const frontKeys = ['front','question','q','prompt','text'];
+  const backKeys = ['back','answer','a','ans','solution','explanation'];
+  const optionsKeys = ['options','choices','mcq','opts'];
+  const tagsKeys = ['tags','tag','labels','topics','topic'];
+  const typeKeys = ['type','cardtype','kind'];
+
+  const findFirst = (keys) => { for(const k of keys) if(lowered[k] !== undefined) return lowered[k]; return undefined; };
+
+  let front = findFirst(frontKeys) || obj.front || obj.question || obj.q || (typeof obj === 'string' ? obj : '') || '';
+  let back = findFirst(backKeys) || obj.back || obj.answer || obj.a || '';
+  let options = findFirst(optionsKeys) || obj.options || obj.choices;
+  if(typeof options === 'string'){
+    if(options.includes('|')) options = options.split('|').map(s=>s.trim());
+    else {
+      try { options = JSON.parse(options); } catch(e) { options = options.split(';').map(s=>s.trim()); }
+    }
+  }
+  if(!Array.isArray(options)) options = [];
+
+  let tags = findFirst(tagsKeys) || obj.tags || obj.topic || '';
+  if(typeof tags === 'string') tags = tags.split(',').map(s=>s.trim()).filter(Boolean);
+  if(!Array.isArray(tags)) tags = [];
+
+  const rawType = (findFirst(typeKeys) || obj.type || 'basic').toString().toLowerCase();
+  const type = rawType.includes('cloze') ? 'cloze' : (rawType.includes('mcq') ? 'mcq' : (options.length > 0 ? 'mcq' : 'basic'));
+
+  const id = obj.id || obj._id || obj.uuid || ('c' + idx + '-' + Math.random().toString(36).slice(2,9));
+
+  let answerIndex = (obj.answerIndex !== undefined ? Number(obj.answerIndex) : (obj.correctIndex !== undefined ? Number(obj.correctIndex) : null));
+  if(isNaN(answerIndex)) answerIndex = null;
+
+  return {
+    id: String(id),
+    type,
+    front: String(front || ''),
+    back: String(back || ''),
+    options,
+    answerIndex,
+    tags,
+    createdAt: new Date().toISOString(),
+    srs: null
+  };
+}
+
+function initSrsForNewCards(cards){
+  const t = now();
+  cards.forEach(c=>{
+    if(!c.srs){
+      c.srs = {EF:2.5, interval:1, repetition:0, due: t, lastReviewed: null};
+    } else {
+      if(!c.srs.EF) c.srs.EF = 2.5;
+      if(!c.srs.interval) c.srs.interval = 1;
+      if(!c.srs.repetition) c.srs.repetition = 0;
+      if(!c.srs.due) c.srs.due = t;
+    }
+  });
+}
+
+/* ---------- Load / Build ---------- */
+function loadCards(rawArray, name){
+  const standard = rawArray.map((r, idx)=> standardizeCard(r, idx));
+  deck = {name: name || 'deck', cards: standard};
+  initSrsForNewCards(deck.cards);
+  saveToStorage();
+  refreshUI();
+  startSession();
+}
+
+function refreshUI(){
+  deckNameEl.textContent = deck.name || 'Universal Flashcards';
+  deckLabelEl.textContent = deck.name || 'empty';
+  deckSubtitleEl.textContent = deck.cards.length ? 'Ready' : 'Load a deck to begin';
+  cardCountEl.textContent = deck.cards.length;
+  const tags = new Set();
+  deck.cards.forEach(c => (c.tags || []).forEach(t => tags.add(t)));
+  tagCountEl.textContent = tags.size;
+  buildTagList(Array.from(tags));
+  updateDueCount();
+}
+
+function updateDueCount(){
+  const d = deck.cards.filter(c => c.srs && c.srs.due <= now()).length;
+  dueCountEl.textContent = d;
+}
+
+/* Build tag list */
+let activeTagFilters = new Set();
+function buildTagList(tags){
+  tagListEl.innerHTML = '';
+  if(!tags.length){ tagListEl.innerHTML = '<div class="small muted">No tags</div>'; return; }
+  tags.forEach(t=>{
+    const btn = document.createElement('button');
+    btn.className = 'tag';
+    btn.textContent = t || 'untagged';
+    btn.onclick = ()=> {
+      if(activeTagFilters.has(t)) activeTagFilters.delete(t);
+      else activeTagFilters.add(t);
+      // visual
+      Array.from(tagListEl.children).forEach(ch => ch.style.outline = activeTagFilters.has(ch.textContent) ? '2px solid rgba(96,165,250,0.12)' : '');
+      buildQueueAndStats();
+    };
+    tagListEl.appendChild(btn);
+  });
+}
+
+/* ---------- Queue and Session ---------- */
+function startSession(){
+  sessionAnswered = 0;
+  sessionTotal = 0;
+  currentIndex = 0;
+  buildQueueAndStats();
+  showCardAt(0);
+}
+
+function buildQueueAndStats(){
+  const nowT = now();
+  const modeCram = qs('#modeCram').checked;
+  const modeAll = qs('#modeAll').checked;
+  const searchText = (searchEl.value || '').toLowerCase().trim();
+  const tagsFilterActive = activeTagFilters.size > 0;
+
+  let candidates = deck.cards.filter(c=>{
+    if(tagsFilterActive){
+      const has = (c.tags || []).some(t=> activeTagFilters.has(t));
+      if(!has) return false;
+    }
+    if(!modeAll && !modeCram){
+      if(!(c.srs && c.srs.due <= nowT)) return false;
+    }
+    if(searchText){
+      const s = ((c.front||'') + ' ' + (c.back||'') + ' ' + (c.tags||[]).join(' ')).toLowerCase();
+      if(!s.includes(searchText)) return false;
+    }
+    return true;
+  });
+
+  if(qs('#orderRand').checked) shuffleArray(candidates);
+  else candidates.sort((a,b) => (a.srs?.due || 0) - (b.srs?.due || 0));
+
+  queue = candidates;
+  sessionTotal = queue.length;
+  updateProgress();
+}
+
+/* ---------- Render Card ---------- */
+function showCardAt(i){
+  if(!queue.length){ showEmpty(); return; }
+  currentIndex = clamp(i, 0, queue.length - 1);
+  const card = queue[currentIndex];
+  renderCard(card);
+}
+
+function showEmpty(){
+  cardFront.textContent = 'No cards due. Switch to All or Cram, or import a deck.';
+  cardBack.style.display = 'none';
+  optionsArea.innerHTML = '';
+  cardDueEl.textContent = 'due: -';
+  cardTagsEl.textContent = '';
+  statsEl.textContent = '0 / 0';
+  progressFill.style.width = '0%';
+  progressPct.textContent = '0%';
+}
+
+function renderCard(card){
+  // front with cloze masked
+  cardFront.innerHTML = renderCloze(card.front, false);
+  cardBack.innerHTML = renderCloze(card.back || card.back || '', true);
+  cardBack.style.display = 'none';
+  cardTagsEl.textContent = (card.tags || []).join(', ');
+  cardDueEl.textContent = 'due: ' + new Date(card.srs?.due || now()).toLocaleString();
+  optionsArea.innerHTML = '';
+
+  if(card.type === 'mcq'){
+    let opts = (card.options && card.options.length) ? card.options.slice() : [];
+    if(opts.length === 0 && autoMCQEl.checked){
+      opts = sampleMcqOptions(card, 4);
+    }
+    if(opts.length > 0){
+      // determine correct original index
+      const correctIdx = (card.answerIndex !== null && card.answerIndex !== undefined) ? card.answerIndex : 0;
+      // create objects with original positions, then shuffle for display
+      const arr = opts.map((o,idx)=> ({text: String(o), origIdx: idx}));
+      shuffleArray(arr);
+      arr.forEach((o, displayIdx)=>{
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.textContent = o.text;
+        div.addEventListener('click', ()=> {
+          // reveal answer then mark correct/incorrect visually
+          const wasCorrect = (o.origIdx === correctIdx);
+          revealAnswer(card, {wasCorrect, selectedDisplayIndex: displayIdx, arr});
+        });
+        optionsArea.appendChild(div);
+      });
+    } else {
+      optionsArea.innerHTML = '<div class="empty">No options available. Provide options in data or enable auto MCQ.</div>';
+    }
+  } else {
+    optionsArea.innerHTML = '';
+  }
+
+  updateProgress();
+}
+
+/* Cloze rendering */
+function renderCloze(text, reveal){
+  if(!text) return '';
+  const pattern = /\{\{c\d+::(.*?)\}\}/g;
+  if(reveal){
+    return escapeHtml(text).replace(pattern, (m, p1)=> '<strong>' + escapeHtml(p1) + '</strong>');
+  } else {
+    return escapeHtml(text).replace(pattern, (m, p1)=> '____');
+  }
+}
+
+/* Sample MCQ options by sampling other card backs (naive) */
+function sampleMcqOptions(card, n){
+  const pool = deck.cards.filter(c => c.id !== card.id && c.back && !(c.back||'').startsWith('{{c'));
+  const byTag = pool.filter(c => (c.tags || []).some(t => (card.tags || []).includes(t)));
+  const source = (byTag.length >= n-1) ? byTag : pool;
+  shuffleArray(source);
+  const picks = source.slice(0, Math.max(0,n-1)).map(c=> c.back);
+  const correct = card.back || (card.options && card.options[0]) || '';
+  const opts = [correct, ...picks].slice(0,n);
+  return opts;
+}
+
+/* Reveal answer for MCQ interactions */
+function revealAnswer(card, mcqResult){
+  // show back, mark UI
+  cardBack.style.display = 'block';
+  // mark options
+  const items = Array.from(optionsArea.children || []);
+  items.forEach((el, idx)=>{
+    el.classList.remove('correct','wrong');
+  });
+  // Determine which displayed option is correct by comparing text to card.back (or orig index)
+  let correctText = (card.options && card.options.length && card.answerIndex !== null && card.answerIndex !== undefined) ? card.options[card.answerIndex] : (card.back || '');
+  correctText = String(correctText);
+  items.forEach((el, idx)=>{
+    if(el.textContent === correctText) el.classList.add('correct');
+  });
+  // mark selection
+  if(mcqResult && !mcqResult.wasCorrect){
+    const selected = items[mcqResult.selectedDisplayIndex];
+    if(selected) selected.classList.add('wrong');
+  }
+}
+
+/* Toggle flip for basic/cloze */
+function toggleFlip(){
+  if(cardBack.style.display === 'block'){ cardBack.style.display = 'none'; }
+  else cardBack.style.display = 'block';
+}
+
+/* ---------- SRS (SM-2 like) ---------- */
+function applyQualityToCard(card, quality){
+  const s = card.srs || {EF:2.5, interval:1, repetition:0, due: now()};
+  const tNow = now();
+  if(quality < 3){
+    s.repetition = 0;
+    s.interval = 1;
+    const retry = Number(retryMinutesEl.value || 0);
+    s.due = retry > 0 ? tNow + retry*60*1000 : tNow + dayMs * 1;
+  } else {
+    s.repetition = (s.repetition || 0) + 1;
+    let ef = s.EF || 2.5;
+    const q = quality;
+    ef = ef + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+    if(ef < 1.3) ef = 1.3;
+    s.EF = ef;
+    if(s.repetition === 1) s.interval = 1;
+    else if(s.repetition === 2) s.interval = 6;
+    else s.interval = Math.round((s.interval || 6) * ef);
+    s.due = tNow + s.interval * dayMs;
+  }
+  s.lastReviewed = tNow;
+  card.srs = s;
+}
+
+/* Mark quality and advance */
+function markQuality(score){
+  if(queue.length === 0) return;
+  const card = queue[currentIndex];
+  applyQualityToCard(card, score);
+  sessionAnswered++;
+  // In non-cram modes remove from queue if no longer due
+  if(!qs('#modeCram').checked){
+    queue.splice(currentIndex, 1);
+    if(currentIndex >= queue.length) currentIndex = Math.max(0, queue.length - 1);
+  } else {
+    currentIndex = (currentIndex + 1) % (queue.length || 1);
+  }
+  saveToStorage();
+  updateDueCount();
+  updateProgress();
+  if(queue.length === 0) showEmpty();
+  else showCardAt(currentIndex);
+}
+
+/* Navigation */
+function nextCard(){ if(queue.length === 0) return; currentIndex = (currentIndex + 1) % queue.length; showCardAt(currentIndex); }
+function prevCard(){ if(queue.length === 0) return; currentIndex = Math.max(0, currentIndex - 1); showCardAt(currentIndex); }
+
+/* Update progress bar */
+function updateProgress(){
+  const done = sessionAnswered;
+  const total = sessionTotal || queue.length || deck.cards.length || 1;
+  const pct = Math.round((done/total)*100);
+  progressFill.style.width = pct + '%';
+  progressPct.textContent = pct + '%';
+  statsEl.textContent = done + ' / ' + total;
+}
+
+/* ---------- Export / Clear ---------- */
+function exportDeckJson(){
+  const blob = new Blob([JSON.stringify(deck, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (deck.name || 'deck') + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearDeck(){
+  if(!confirm('Clear current deck from memory?')) return;
+  deck = {name:'untitled', cards:[]};
+  queue = [];
+  currentIndex = 0;
+  sessionAnswered = 0;
+  sessionTotal = 0;
+  saveToStorage();
+  refreshUI();
+  showEmpty();
+}
+
+/* ---------- Small helpers ---------- */
+function exportDeckExample(){
+  // not exposed, but handy for dev
+  const ex = [
+    {"id":"card-001","type":"basic","front":"What is the time complexity of binary search?","back":"O(log n)","tags":["algorithms","search"]},
+    {"id":"card-002","type":"mcq","front":"Which complexity is best for binary search?","back":"O(log n)","options":["O(log n)","O(n)","O(n log n)","O(1)"],"answerIndex":0,"tags":["algorithms"]},
+    {"id":"card-003","type":"cloze","front":"The capital of France is {{c1::Paris}}.","back":"Paris","tags":["geography"]}
+  ];
+  const blob = new Blob([JSON.stringify(ex, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'example.json'; a.click(); URL.revokeObjectURL(url);
+}
+
+/* ---------- Search / filters listeners ---------- */
+searchEl.addEventListener('input', ()=> buildQueueAndStats());
+qsa('input[name="mode"]').forEach(i=> i.addEventListener('change', ()=> { buildQueueAndStats(); showCardAt(0); }));
+qsa('input[name="order"]').forEach(i=> i.addEventListener('change', ()=> { buildQueueAndStats(); showCardAt(0); }));
+
+/* ---------- File load fallback: if storage exists, load ---------- */
+(function init(){
+  const loaded = loadFromStorage();
+  if(!loaded){
+    showEmpty();
+  }
+})();
+
+</script>
+</body>
+</html>
