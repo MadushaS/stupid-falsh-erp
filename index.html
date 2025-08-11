@@ -10,6 +10,7 @@
    - Hidden panels for nonessential controls
    - Large typography and generous spacing
    - System font stack only
+   - Mobile responsive design
 */
 :root{
   --bg:#f6f7f8;
@@ -25,26 +26,52 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#0f1724}
-.app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px}
+.app{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 12px}
 .shell{width:100%;max-width:var(--maxw);display:grid;grid-template-columns:1fr;gap:var(--gap);align-items:start;}
 
 /* Topbar - minimal */
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-.title{font-size:16px;font-weight:700}
-.controls{display:flex;gap:8px;align-items:center}
-.icon-btn{background:transparent;border:1px solid rgba(15,23,36,0.04);padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+.logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0}
+.title{font-size:16px;font-weight:700;min-width:0}
+.controls{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.icon-btn{background:transparent;border:1px solid rgba(15,23,36,0.04);padding:8px 10px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--muted);display:inline-flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap}
 .icon-btn:focus{outline:2px solid rgba(96,165,250,0.12)}
 .small-note{font-size:13px;color:var(--muted)}
 
-/* Main area */
-.main{display:grid;grid-template-columns:320px 1fr 320px;gap:var(--gap);align-items:start}
-@media (max-width:1100px){ .main{grid-template-columns:1fr;padding:0 8px} .side, .side-right{display:none} }
+/* Main area - responsive grid */
+.main{display:grid;grid-template-columns:1fr;gap:var(--gap);align-items:start}
+
+/* Desktop layout */
+@media (min-width:1100px){ 
+  .main{grid-template-columns:300px 1fr 280px} 
+}
+
+/* Tablet layout */
+@media (min-width:768px) and (max-width:1099px){ 
+  .main{grid-template-columns:1fr;padding:0 8px} 
+  .side, .side-right{max-width:none;margin:0 auto;width:100%}
+  .side{order:2}
+  .center{order:1}
+  .side-right{order:3}
+}
+
+/* Mobile layout */
+@media (max-width:767px){ 
+  .main{grid-template-columns:1fr;padding:0 4px;gap:16px} 
+  .side, .side-right{display:none}
+  .topbar{padding:4px 8px;flex-wrap:wrap}
+  .controls{order:2;width:100%;justify-content:center;margin-top:8px}
+  .app{padding:12px 8px}
+  --card-pad:24px;
+}
 
 .side{background:var(--panel);padding:18px;border-radius:12px;box-shadow:var(--shadow);height:fit-content;align-self:start}
 .side h3{margin:0;margin-bottom:12px;font-size:14px;color:#0f1724}
-.uploader{border:1px dashed rgba(15,23,36,0.05);padding:14px;border-radius:10px;text-align:center;color:var(--muted);cursor:pointer}
+.uploader{border:1px dashed rgba(15,23,36,0.05);padding:14px;border-radius:10px;text-align:center;color:var(--muted);cursor:pointer;margin-bottom:12px}
+.url-import{margin-bottom:12px}
+.url-input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:transparent;font-size:14px;color:#0f1724;margin-bottom:8px}
+.url-btn{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:var(--accent);color:white;cursor:pointer;font-weight:600}
 .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .pill{background:rgba(15,23,36,0.03);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
 .search{margin-top:12px}
@@ -52,31 +79,49 @@ html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, ui-sans-s
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .tag{padding:8px 10px;border-radius:999px;background:rgba(15,23,36,0.03);cursor:pointer;color:var(--muted);font-size:13px}
 
-/* Center card */
-.center{display:flex;flex-direction:column;align-items:center;gap:18px;min-height:72vh;justify-content:center}
+/* Center card - responsive */
+.center{display:flex;flex-direction:column;align-items:center;gap:18px;min-height:60vh;justify-content:center}
 .card-wrap{width:100%;display:flex;justify-content:center}
-.card{width:min(900px,90vw);background:var(--panel);border-radius:16px;box-shadow:var(--shadow);padding:var(--card-pad);display:flex;flex-direction:column;align-items:center;gap:20px;min-height:48vh;max-height:80vh;position:relative}
+.card{width:min(900px,95vw);background:var(--panel);border-radius:16px;box-shadow:var(--shadow);padding:var(--card-pad);display:flex;flex-direction:column;align-items:center;gap:20px;min-height:40vh;max-height:80vh;position:relative}
 .card-stage{flex:1;display:flex;align-items:center;justify-content:center;width:100%;padding:8px}
 .front,.back{width:100%;text-align:center;line-height:1.25;word-wrap:break-word}
-.front{font-size:2.1rem;font-weight:700;color:#0f1724;white-space:pre-wrap}
-.back{font-size:1.15rem;color:var(--muted);display:none;white-space:pre-wrap}
+.front{font-size:clamp(1.5rem, 4vw, 2.1rem);font-weight:700;color:#0f1724;white-space:pre-wrap}
+.back{font-size:clamp(1rem, 3vw, 1.15rem);color:var(--muted);display:none;white-space:pre-wrap}
 .card-meta{position:absolute;top:18px;left:18px;font-size:13px;color:var(--muted)}
 .card-tags{position:absolute;top:18px;right:18px;font-size:13px;color:var(--muted)}
 
-/* Options / MCQ */
+/* Mobile card adjustments */
+@media (max-width:767px){
+  .card{padding:24px 16px;min-height:35vh}
+  .card-meta, .card-tags{position:static;font-size:12px;margin-bottom:8px}
+  .card-meta{text-align:left}
+  .card-tags{text-align:right}
+}
+
+/* Options / MCQ - responsive */
 .options{width:100%;display:grid;grid-template-columns:1fr;gap:12px;margin-top:6px}
-.option{padding:14px;border-radius:12px;border:1px solid rgba(15,23,36,0.04);background:transparent;cursor:pointer;text-align:left;font-weight:600}
+@media (min-width:768px){
+  .options{grid-template-columns:repeat(auto-fit, minmax(200px, 1fr))}
+}
+.option{padding:14px;border-radius:12px;border:1px solid rgba(15,23,36,0.04);background:transparent;cursor:pointer;text-align:left;font-weight:600;font-size:clamp(14px, 2.5vw, 16px)}
 .option.correct{outline:3px solid rgba(16,185,129,0.12);background:rgba(16,185,129,0.04)}
 .option.wrong{outline:3px solid rgba(239,68,68,0.12);background:rgba(239,68,68,0.04)}
-.hint{font-size:13px;color:var(--muted);margin-top:6px}
+.hint{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
 
-/* Bottom controls */
-.controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px;width:100%}
-.btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+/* Bottom controls - responsive */
+.controls-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:18px;width:100%;flex-wrap:wrap}
+.btn{padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700;font-size:clamp(14px, 2.5vw, 16px);min-width:80px}
 .btn.again{background:#fff2f2;color:#b91c1c;border:1px solid rgba(0,0,0,0.04)}
 .btn.hard{background:#fff7ed;color:#92400e;border:1px solid rgba(0,0,0,0.04)}
 .btn.good{background:#ecfccb;color:#166534;border:1px solid rgba(0,0,0,0.04)}
 .btn.easy{background:#eff6ff;color:#0f172a;border:1px solid rgba(0,0,0,0.04)}
+
+/* Mobile controls adjustments */
+@media (max-width:767px){
+  .controls-bar{gap:6px;padding:12px}
+  .btn{padding:10px 12px;font-size:14px;min-width:70px}
+}
+
 .progress-wrap{width:100%;max-width:900px;padding:0 12px;display:flex;align-items:center;gap:12px}
 .progress{flex:1;height:10px;background:rgba(15,23,36,0.05);border-radius:999px;overflow:hidden}
 .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
@@ -88,6 +133,16 @@ html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, ui-sans-s
 .controls-compact{display:flex;flex-direction:column;gap:8px}
 .select{padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.04);background:transparent;font-size:14px;color:#0f1724}
 
+/* Mobile toggle for panels */
+@media (max-width:767px){
+  .mobile-toggle{position:fixed;bottom:20px;right:20px;background:var(--accent);color:white;border:none;border-radius:50%;width:56px;height:56px;font-size:24px;cursor:pointer;box-shadow:var(--shadow);z-index:1000}
+  .mobile-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:999;display:none}
+  .mobile-panel.active{display:block}
+  .mobile-panel-content{position:absolute;bottom:0;left:0;right:0;background:var(--panel);border-radius:16px 16px 0 0;padding:20px;max-height:80vh;overflow-y:auto}
+  .mobile-panel-header{display:flex;justify-content:between;align-items:center;margin-bottom:16px}
+  .mobile-panel-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+}
+
 /* subtle footer note */
 .footer-note{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
 
@@ -95,6 +150,16 @@ html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, ui-sans-s
 .hidden{display:none}
 .empty{color:var(--muted);padding:14px;text-align:center}
 kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight:700}
+
+/* Loading state */
+.loading{opacity:0.6;pointer-events:none}
+.loading::after{content:'Loading...';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--panel);padding:12px 20px;border-radius:8px;box-shadow:var(--shadow)}
+
+/* Responsive mode toggles */
+@media (max-width:767px){
+  .mode-toggles, .order-toggles{display:flex;flex-direction:column;gap:8px}
+  .mode-toggles > div, .order-toggles > div{display:flex;gap:4px;flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
@@ -113,6 +178,7 @@ kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight
 
       <div class="controls">
         <button id="importBtn" class="icon-btn" title="Import JSON or CSV">Import</button>
+        <button id="urlImportBtn" class="icon-btn" title="Import from URL">URL Import</button>
         <button id="exportBtn" class="icon-btn" title="Export deck">Export</button>
         <button id="clearBtn" class="icon-btn" title="Clear deck">Clear</button>
         <button id="settingsBtn" class="icon-btn" title="Shortcuts">Shortcuts</button>
@@ -126,6 +192,11 @@ kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight
       <aside class="side">
         <h3>Deck Controls</h3>
         <div class="uploader" id="uploader">Drop JSON / CSV here or click to import</div>
+        
+        <div class="url-import">
+          <input id="urlInput" class="url-input" placeholder="Enter JSON URL (e.g., https://example.com/deck.json)" />
+          <button id="urlImportBtnSide" class="url-btn">Import from URL</button>
+        </div>
 
         <div class="meta-row">
           <div class="pill">Cards <span id="cardCount">0</span></div>
@@ -137,18 +208,18 @@ kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight
           <input id="search" class="input" placeholder="Search front, back, tags" />
         </div>
 
-        <div style="margin-top:16px">
+        <div style="margin-top:16px" class="mode-toggles">
           <div class="small">Mode</div>
-          <div style="display:flex;gap:8px;margin-top:8px">
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
             <label class="tag"><input type="radio" name="mode" id="modeDue" checked> Due</label>
             <label class="tag"><input type="radio" name="mode" id="modeAll"> All</label>
             <label class="tag"><input type="radio" name="mode" id="modeCram"> Cram</label>
           </div>
         </div>
 
-        <div style="margin-top:14px">
+        <div style="margin-top:14px" class="order-toggles">
           <div class="small">Order</div>
-          <div style="display:flex;gap:8px;margin-top:8px">
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
             <label class="tag"><input type="radio" name="order" id="orderDue" checked> By due</label>
             <label class="tag"><input type="radio" name="order" id="orderRand"> Random</label>
           </div>
@@ -161,10 +232,10 @@ kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight
 
         <div style="margin-top:14px">
           <div class="small">Quick options</div>
-          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap">
             <label class="small"><input type="checkbox" id="autoMCQ" checked> Auto MCQ</label>
           </div>
-          <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap">
             <label class="small">Short retry minutes</label>
             <select id="retryMinutes" class="select" style="width:100px">
               <option value="0">none</option>
@@ -243,6 +314,22 @@ kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight
   </div>
 </div>
 
+<!-- Mobile toggle button -->
+<button class="mobile-toggle" id="mobileToggle" style="display:none">⚙️</button>
+
+<!-- Mobile panel overlay -->
+<div class="mobile-panel" id="mobilePanel">
+  <div class="mobile-panel-content">
+    <div class="mobile-panel-header">
+      <h3>Controls</h3>
+      <button class="mobile-panel-close" id="mobilePanelClose">×</button>
+    </div>
+    <div id="mobilePanelBody">
+      <!-- Content will be populated dynamically -->
+    </div>
+  </div>
+</div>
+
 <!-- hidden file input -->
 <input id="fileInput" type="file" accept=".json,.csv,.txt" style="display:none">
 
@@ -254,6 +341,8 @@ kbd{background:rgba(15,23,36,0.04);padding:6px 8px;border-radius:6px;font-weight
    - Modes: due / all / cram
    - Auto MCQ sampling
    - LocalStorage persistence
+   - URL import functionality
+   - Mobile responsive features
 */
 
 /* ---------- Utilities ---------- */
@@ -283,6 +372,9 @@ let sessionTotal = 0;
 const fileInput = qs('#fileInput');
 const uploader = qs('#uploader');
 const importBtn = qs('#importBtn');
+const urlImportBtn = qs('#urlImportBtn');
+const urlImportBtnSide = qs('#urlImportBtnSide');
+const urlInput = qs('#urlInput');
 const exportBtn = qs('#exportBtn');
 const clearBtn = qs('#clearBtn');
 const settingsBtn = qs('#settingsBtn');
@@ -305,6 +397,10 @@ const deckSubtitleEl = qs('#deckSubtitle');
 const deckLabelEl = qs('#deckLabel');
 const retryMinutesEl = qs('#retryMinutes');
 const autoMCQEl = qs('#autoMCQ');
+const mobileToggle = qs('#mobileToggle');
+const mobilePanel = qs('#mobilePanel');
+const mobilePanelClose = qs('#mobilePanelClose');
+const mobilePanelBody = qs('#mobilePanelBody');
 
 /* buttons */
 qsa('.btn').forEach(b=> b.addEventListener('click', e=> markQuality(Number(e.currentTarget.dataset.score))));
@@ -313,10 +409,125 @@ qs('#nextBtn').addEventListener('click', nextCard);
 qs('#shuffleBtn').addEventListener('click', ()=>{ shuffleArray(queue); currentIndex=0; showCardAt(currentIndex); });
 qs('#exportSrsBtn').addEventListener('click', exportDeckJson);
 importBtn.addEventListener('click', ()=> fileInput.click());
+urlImportBtn.addEventListener('click', showUrlImportDialog);
+urlImportBtnSide.addEventListener('click', importFromUrl);
 uploader.addEventListener('click', ()=> fileInput.click());
 fileInput.addEventListener('change', e=> handleFiles(e.target.files));
 exportBtn.addEventListener('click', exportDeckJson);
 clearBtn.addEventListener('click', clearDeck);
+
+/* URL import functionality */
+async function showUrlImportDialog(){
+  const url = prompt('Enter JSON URL:', '');
+  if(url && url.trim()) {
+    await importFromUrlValue(url.trim());
+  }
+}
+
+async function importFromUrl(){
+  const url = urlInput.value.trim();
+  if(!url) return alert('Please enter a URL');
+  await importFromUrlValue(url);
+}
+
+async function importFromUrlValue(url){
+  if(!url.startsWith('http://') && !url.startsWith('https://')) {
+    return alert('URL must start with http:// or https://');
+  }
+  
+  try {
+    cardArea.classList.add('loading');
+    const response = await fetch(url);
+    if(!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    
+    const contentType = response.headers.get('content-type');
+    if(contentType && contentType.includes('application/json')) {
+      const data = await response.json();
+      const arr = normalizeJSON(data);
+      const fileName = url.split('/').pop().replace(/\.[^/.]+$/, '') || 'imported';
+      loadCards(arr, fileName);
+      urlInput.value = '';
+      alert('Successfully imported from URL!');
+    } else {
+      const text = await response.text();
+      if(looksLikeJSON(text)) {
+        const data = JSON.parse(text);
+        const arr = normalizeJSON(data);
+        const fileName = url.split('/').pop().replace(/\.[^/.]+$/, '') || 'imported';
+        loadCards(arr, fileName);
+        urlInput.value = '';
+        alert('Successfully imported from URL!');
+      } else {
+        throw new Error('URL does not contain valid JSON data');
+      }
+    }
+  } catch(error) {
+    alert('Failed to import from URL: ' + error.message);
+  } finally {
+    cardArea.classList.remove('loading');
+  }
+}
+
+/* Mobile responsiveness */
+function setupMobileFeatures(){
+  // Show mobile toggle on small screens
+  function checkMobile(){
+    const isMobile = window.innerWidth <= 767;
+    mobileToggle.style.display = isMobile ? 'block' : 'none';
+  }
+  
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+  
+  // Mobile panel functionality
+  mobileToggle.addEventListener('click', ()=> {
+    // Copy side panel content to mobile panel
+    const sideContent = qs('.side');
+    if(sideContent) {
+      mobilePanelBody.innerHTML = sideContent.innerHTML;
+      // Re-attach event listeners for mobile panel
+      setupMobilePanelListeners();
+    }
+    mobilePanel.classList.add('active');
+  });
+  
+  mobilePanelClose.addEventListener('click', ()=> {
+    mobilePanel.classList.remove('active');
+  });
+  
+  mobilePanel.addEventListener('click', (e)=> {
+    if(e.target === mobilePanel) {
+      mobilePanel.classList.remove('active');
+    }
+  });
+}
+
+function setupMobilePanelListeners(){
+  // Re-setup listeners for mobile panel controls
+  const mobileSearch = mobilePanelBody.querySelector('#search');
+  if(mobileSearch) {
+    mobileSearch.addEventListener('input', ()=> buildQueueAndStats());
+  }
+  
+  const mobileRadios = mobilePanelBody.querySelectorAll('input[type="radio"]');
+  mobileRadios.forEach(r=> {
+    r.addEventListener('change', ()=> {
+      // Update main form
+      const mainRadio = document.querySelector(`input[name="${r.name}"][value="${r.value}"]`);
+      if(mainRadio) mainRadio.checked = r.checked;
+      buildQueueAndStats(); 
+      showCardAt(0);
+    });
+  });
+  
+  const mobileCheckboxes = mobilePanelBody.querySelectorAll('input[type="checkbox"]');
+  mobileCheckboxes.forEach(c=> {
+    c.addEventListener('change', ()=> {
+      const mainCheckbox = document.querySelector(`#${c.id.replace('mobile-', '')}`);
+      if(mainCheckbox) mainCheckbox.checked = c.checked;
+    });
+  });
+}
 
 /* drag and drop */
 uploader.addEventListener('dragover', e=>{ e.preventDefault(); uploader.style.borderColor='rgba(96,165,250,0.3)'; });
@@ -762,19 +973,6 @@ function clearDeck(){
   showEmpty();
 }
 
-/* ---------- Small helpers ---------- */
-function exportDeckExample(){
-  // not exposed, but handy for dev
-  const ex = [
-    {"id":"card-001","type":"basic","front":"What is the time complexity of binary search?","back":"O(log n)","tags":["algorithms","search"]},
-    {"id":"card-002","type":"mcq","front":"Which complexity is best for binary search?","back":"O(log n)","options":["O(log n)","O(n)","O(n log n)","O(1)"],"answerIndex":0,"tags":["algorithms"]},
-    {"id":"card-003","type":"cloze","front":"The capital of France is {{c1::Paris}}.","back":"Paris","tags":["geography"]}
-  ];
-  const blob = new Blob([JSON.stringify(ex, null, 2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = 'example.json'; a.click(); URL.revokeObjectURL(url);
-}
-
 /* ---------- Search / filters listeners ---------- */
 searchEl.addEventListener('input', ()=> buildQueueAndStats());
 qsa('input[name="mode"]').forEach(i=> i.addEventListener('change', ()=> { buildQueueAndStats(); showCardAt(0); }));
@@ -782,6 +980,7 @@ qsa('input[name="order"]').forEach(i=> i.addEventListener('change', ()=> { build
 
 /* ---------- File load fallback: if storage exists, load ---------- */
 (function init(){
+  setupMobileFeatures();
   const loaded = loadFromStorage();
   if(!loaded){
     showEmpty();
